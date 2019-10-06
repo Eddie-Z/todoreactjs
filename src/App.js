@@ -7,26 +7,33 @@ class App extends Component {
       {
         id:1,
         title: 'take out the trash',
-        complete:false
+        completed:false
       },
       {
         id:2,
         title: 'eat breakfast',
-        complete:false
+        completed:true
       },
       {
         id:3,
         title: 'eat dinner',
-        complete:false
+        completed:false
       }
     ]
   }
+  markComplete = (id) =>{
+    this.setState({todos: this.state.todos.map(todo => {
+      if(todo.id === id){
+        todo.completed = !todo.completed
+      }
+      return todo;
+    })});
+}
   
   render() {
-      console.log(this.state.todos)
       return(
       <div className="App">
-        <Todos/>
+        <Todos todos={this.state.todos} markComplete = {this.markComplete}/>
       </div>
     );
   }
